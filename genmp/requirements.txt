@@ -1,0 +1,14 @@
+# Uncomment to enable Azure Monitor OpenTelemetry
+# Ref: aka.ms/functions-azure-monitor-python
+# azure-monitor-opentelemetry
+azure-eventhub
+azure-common
+azure-core
+azure-cosmos
+azure-functions
+azure-functions-durable
+azure-eventhub
+requests
+certifi
+confluent-kafka[avro,json,protobuf]>=2.11.1
+confluent-kafka
