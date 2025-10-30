@@ -35,7 +35,7 @@ jobs:
           source venv/bin/activate
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r ./genmp/requirements.txt
 
       # Optional: Add step to run tests here
 
@@ -72,4 +72,5 @@ jobs:
           app-name: 'mpe-data-ingest-ids-genmp'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C1470010378A45A5B1CE92B259644E5C }}
