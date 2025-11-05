@@ -38,7 +38,7 @@ jobs:
       - name: Build '.python_packages' folder and Install dependencies
         run: | 
           mkdir -p .python_packages/lib/site-packages
-          pip install -r ./genmp/requirements.txt -t .python_packages/lib/site-packages
+          pip install -r requirements.txt -t .python_packages/lib/site-packages
         working-directory: ./genmp
       
       # Optional: Add step to run tests here
@@ -78,5 +78,6 @@ jobs:
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
 
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9F197C928E0D47B5B9974D3BFF3E00CB }}
+
 
 
