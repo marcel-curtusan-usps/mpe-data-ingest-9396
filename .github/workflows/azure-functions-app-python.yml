@@ -14,7 +14,7 @@ env:
   AZURE_FUNCTIONAPP_NAME: 'mpemon-ids-kafka-c-genmp-fa'   # set this to your function app name on Azure
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'genmp'       # set this to the path to your function app project, defaults to the repository root
   PYTHON_VERSION: '3.9'                     # set this to the python version to use (e.g. '3.6', '3.7', '3.8')
-  AZURE_FUNCTIONAPP_PUBLISH_PROFILE: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0DB6C08E8B3848C09474BAB9AB2A3205 }} # set this to your function app publish profile secret
+  AZURE_FUNCTIONAPP_PUBLISH_PROFILE: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0DB6C08E8B3848C09474BAB9AB2A3205 }} # set this to your function app publish profile  secret
 
 jobs:
   build-and-deploy:
