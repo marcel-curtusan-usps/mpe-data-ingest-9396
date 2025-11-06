@@ -29,27 +29,24 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Build '.python_packages' folder and Install dependencies
-        run: |
-          mkdir -p .python_packages/lib/site-packages
-          pip install -r requirements.txt -t .python_packages/lib/site-packages
-        working-directory: ./genmp
+      # Optionally, you can still install dependencies locally for testing, but Oryx will handle this on Azure
+      # - name: Build '.python_packages' folder and Install dependencies
+      #   run: |
+      #     mkdir -p .python_packages/lib/site-packages
+      #     pip install -r requirements.txt -t .python_packages/lib/site-packages
+      #   working-directory: ./genmp
 
       - name: Run tests (placeholder)
         run: |
           echo "No tests implemented yet. Add your test command here."
         working-directory: ./genmp
 
-      - name: Zip artifact for deployment
-        run: zip -r release.zip . -x ".git/*" ".github/*" "venv/*"
-        working-directory: ./genmp
-        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: python-app
           path: |
-            ./genmp/release.zip
+            ./genmp
 
   deploy:
     runs-on: ubuntu-latest
@@ -61,19 +58,13 @@ jobs:
         with:
           name: python-app
 
-      - name: Unzip artifact for deployment
-        run: |
-          unzip release.zip
-          rm release.zip
-        
       - name: 'Deploy to Azure Functions'
         uses: Azure/functions-action@v1
         id: deploy-to-function
         with:
           app-name: 'mpemon-kafka-c-ids-genmp-fa'
           slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-
+          package: ./genmp
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9F197C928E0D47B5B9974D3BFF3E00CB }}
 
 
