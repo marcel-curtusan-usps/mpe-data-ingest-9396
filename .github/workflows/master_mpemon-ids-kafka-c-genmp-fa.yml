@@ -75,6 +75,6 @@ jobs:
         id: deploy-to-function
         with:
           app-name: 'mpemon-ids-kafka-c-genmp-fa'
-          slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.__publishingprofilesecretname__ }}
+          slot-name: 'production'
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0DB6C08E8B3848C09474BAB9AB2A3205 }}
