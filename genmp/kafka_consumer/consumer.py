@@ -6,7 +6,7 @@ import time
 import threading
 import asyncio
 from typing import Optional
-from genmp.eventhubs.producer import send_immediate
+from eventhubs.producer import send_immediate
 try:
     from confluent_kafka import Consumer, KafkaError, KafkaException  # type: ignore
     from confluent_kafka.schema_registry import SchemaRegistryClient  # type: ignore

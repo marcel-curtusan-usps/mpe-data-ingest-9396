@@ -2,7 +2,7 @@ import logging
 import json
 import azure.functions as func
 import asyncio
-from genmp.function_app import app
+from function_app import app
 from azure.eventhub import EventData
 from azure.eventhub.aio import EventHubProducerClient
 import threading

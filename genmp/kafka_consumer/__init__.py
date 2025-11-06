@@ -1,10 +1,8 @@
 import logging
 import json
-import os
 import azure.functions as func
-import asyncio
-from genmp.function_app import app
-from genmp.kafka_consumer.consumer import start, stop
+from function_app import app
+from kafka_consumer.consumer import start, stop
 
 @app.function_name(name="ConsumerStart")
 @app.route(route="start", auth_level=func.AuthLevel.ANONYMOUS)
