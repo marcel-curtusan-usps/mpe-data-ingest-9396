@@ -52,4 +52,4 @@ jobs:
           app-name: 'mpemon-ids-kafka-c-genmp-fa'
           slot-name: 'production'
           package: release.zip
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C1470010378A45A5B1CE92B259644E5C }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_PROD }}
