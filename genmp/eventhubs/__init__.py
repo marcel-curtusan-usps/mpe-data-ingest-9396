@@ -1,11 +1,14 @@
+
 import logging
 import json
 import azure.functions as func
 import asyncio
-from function_app import app
 from eventhubs.producer import start, stop, get_status
 import os
 import threading
+
+app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
+
 
 @app.function_name(name="ProducerStart")
 @app.route(auth_level=func.AuthLevel.ANONYMOUS)
@@ -22,6 +25,7 @@ async def producer_start(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(f"Error starting producer: {e}", status_code=500)
 
 
+
 @app.function_name(name="ProducerStop")
 @app.route(auth_level=func.AuthLevel.ANONYMOUS)
 async def producer_stop(req: func.HttpRequest) -> func.HttpResponse:
@@ -35,6 +39,7 @@ async def producer_stop(req: func.HttpRequest) -> func.HttpResponse:
     except Exception as e:
         logging.exception("Error stopping producer")
         return func.HttpResponse(f"Error stopping producer: {e}", status_code=500)
+
 
 
 @app.function_name(name="ProducerHealth")

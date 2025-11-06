@@ -1,8 +1,11 @@
+
 import logging
 import json
 import azure.functions as func
-from function_app import app
 from kafka_consumer.consumer import start, stop
+
+app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
+
 
 @app.function_name(name="ConsumerStart")
 @app.route(route="start", auth_level=func.AuthLevel.ANONYMOUS)
@@ -26,6 +29,7 @@ async def main(req: func.HttpRequest) -> func.HttpResponse:
              "This HTTP triggered function executed successfully. Pass a state in the query string or in the request body for a personalized response.",
              status_code=200
         )
+
 
 @app.function_name(name="ConsumerStop")
 @app.route(route="stop", auth_level=func.AuthLevel.ANONYMOUS)
