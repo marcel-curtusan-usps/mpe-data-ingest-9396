@@ -1,6 +1,6 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
 # More GitHub Actions for Azure: https://github.com/Azure/actions
-# More info on Python, GitHub Actions, and Azure Functions: https://aka.ms/python-webapps-actions t
+# More info on Python, GitHub Actions, and Azure Functions: https://aka.ms/python-webapps-actions
 
 name: Build and deploy Python project to Azure Function App - mpemon-ids-kafka-c-genmp-fa
 
@@ -77,5 +77,4 @@ jobs:
           app-name: 'mpemon-ids-kafka-c-genmp-fa'
           slot-name: 'production'
           package: .
-
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0DB6C08E8B3848C09474BAB9AB2A3205 }}
