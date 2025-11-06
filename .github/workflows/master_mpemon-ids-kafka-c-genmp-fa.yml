@@ -36,6 +36,7 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+        working-directory: ./genmp
 
       # Optional: Add step to run tests here
 
@@ -72,4 +73,5 @@ jobs:
           app-name: 'mpemon-ids-kafka-c-genmp-fa'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0DB6C08E8B3848C09474BAB9AB2A3205 }}
