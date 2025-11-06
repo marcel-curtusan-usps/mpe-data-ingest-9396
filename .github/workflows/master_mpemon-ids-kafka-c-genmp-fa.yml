@@ -28,16 +28,22 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
+      - name: Install dependencies to .python_packages
+        run: |
+          mkdir -p .python_packages/lib/site-packages
+          pip install -r requirements.txt -t .python_packages/lib/site-packages
+        working-directory: ./genmp
+
       # Optionally, run tests here if you have any
       - name: Run tests (placeholder)
         run: |
           echo "No tests implemented yet. Add your test command here."
         working-directory: ./genmp
 
-      - name: 'Login to Azure'
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Zip for deployment
+        run: |
+          cd genmp
+          zip -r ../release.zip . -x "__pycache__/*" "*.pyc" "venv/*"
 
       - name: 'Deploy to Azure Functions'
         uses: Azure/functions-action@v1
@@ -45,4 +51,5 @@ jobs:
         with:
           app-name: 'mpemon-ids-kafka-c-genmp-fa'
           slot-name: 'Production'
-          package: genmp
+          package: release.zip
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C1470010378A45A5B1CE92B259644E5C }}
