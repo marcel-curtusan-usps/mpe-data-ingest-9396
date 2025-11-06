@@ -54,7 +54,7 @@ jobs:
         mkdir -p .python_packages/lib/site-packages
         pip install -r requirements.txt --target=".python_packages/lib/site-packages"
         popd
-        working-directory: ./genmp
+      working-directory: ./genmp
 
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
