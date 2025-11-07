@@ -4,11 +4,12 @@ import json
 import azure.functions as func
 from kafka_consumer.consumer import start, stop
 
-app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
+# Use the shared FunctionApp instance defined in the app root so all routes register
+from function_app import app
 
 
 @app.function_name(name="ConsumerStart")
-@app.route(route="start", auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="consumer/start", auth_level=func.AuthLevel.ANONYMOUS)
 async def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
@@ -32,7 +33,7 @@ async def main(req: func.HttpRequest) -> func.HttpResponse:
 
 
 @app.function_name(name="ConsumerStop")
-@app.route(route="stop", auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="consumer/stop", auth_level=func.AuthLevel.ANONYMOUS)
 async def stop_consumer(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Stop consumer request received.')
     try:

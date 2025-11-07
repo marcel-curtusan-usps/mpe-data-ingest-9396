@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  genmp:
+    build:
+      context: ./genmp
+      dockerfile: Dockerfile
+    image: genmp:local
+    env_file:
+      - ./genmp/.env
+    ports:
+      - "7071:80"
+    volumes:
+      - ./genmp:/home/site/wwwroot:ro
+    restart: on-failure
+    # For local debugging you may mount as read-write and install dev dependencies; use with caution
+    # volumes:
+    #  - ./genmp:/home/site/wwwroot:rw

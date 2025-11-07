@@ -7,11 +7,12 @@ from eventhubs.producer import start, stop, get_status
 import os
 import threading
 
-app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
+# Use the shared FunctionApp instance defined in the app root so all routes register
+from function_app import app
 
 
 @app.function_name(name="ProducerStart")
-@app.route(auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="producer/start", auth_level=func.AuthLevel.ANONYMOUS)
 async def producer_start(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Producer start request received.')
     try:
@@ -27,7 +28,7 @@ async def producer_start(req: func.HttpRequest) -> func.HttpResponse:
 
 
 @app.function_name(name="ProducerStop")
-@app.route(auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="producer/stop", auth_level=func.AuthLevel.ANONYMOUS)
 async def producer_stop(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Producer stop request received.')
     try:
@@ -43,7 +44,7 @@ async def producer_stop(req: func.HttpRequest) -> func.HttpResponse:
 
 
 @app.function_name(name="ProducerHealth")
-@app.route(auth_level=func.AuthLevel.ANONYMOUS)
+@app.route(route="api/ProducerHealth", auth_level=func.AuthLevel.ANONYMOUS)
 async def producer_health(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Producer health check received.')
     try:
